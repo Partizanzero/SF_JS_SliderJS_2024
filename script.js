@@ -1,5 +1,5 @@
 //массив с проектами
-let images = [
+const images = [
   {
     url: "./img/banner_1_admiral.jpg",
     title: "Rostov-on-Don, Admiral",
@@ -34,13 +34,13 @@ function initSlider() {
   if (!images || !images.length) return;
 
   //получаем все нужные нам ноды
-  let sliderImages = document.querySelector(".slider__images"); //блок куда выводим слайды
-  let sliderArrows = document.querySelector(".projects__nav"); //блок со стрелками и точками
-  let sliderDots = document.querySelector(".projects__nav-dots"); //блок с точками
-  let sliderTitle = document.querySelector(".slider__titles"); //блок с названиями над картинками
-  let infoCity = document.querySelector(".projects__description-info-city"); //блок с городом
-  let infoArea = document.querySelector(".projects__description-info-area"); //блок с area
-  let infoTime = document.querySelector(".projects__description-info-time"); //блок с time
+  const sliderImages = document.querySelector(".slider__images"); //блок куда выводим слайды
+  const sliderArrows = document.querySelector(".projects__nav"); //блок со стрелками и точками
+  const sliderDots = document.querySelector(".projects__nav-dots"); //блок с точками
+  const sliderTitle = document.querySelector(".slider__titles"); //блок с названиями над картинками
+  const infoCity = document.querySelector(".projects__description-info-city"); //блок с городом
+  const infoArea = document.querySelector(".projects__description-info-area"); //блок с area
+  const infoTime = document.querySelector(".projects__description-info-time"); //блок с time
 
   initImages(); //запускаем ф-ю вывода картинок в html
   initArrows(); //запускаем ф-ю управления стрелками
@@ -50,7 +50,7 @@ function initSlider() {
     //обходим массив с проектими:
     //создаем див для отдельной картинки и выводим туда картинку
     images.forEach((image, index) => {
-      let imageDiv = `<div class="image n${index} ${
+      const imageDiv = `<div class="image n${index} ${
         index === 0 ? "active" : ""
       }" style="background-image:url(${
         images[index].url
@@ -59,7 +59,7 @@ function initSlider() {
 
       //1.1.1 УПРАВЛЕНИЕ ТОЧКАМИ переключения слайдера
       //аналогично выводу картинок
-      let dotsDiv = `<div class="projects__nav-dots-item n${index} ${
+      const dotsDiv = `<div class="projects__nav-dots-item n${index} ${
         index === 0 ? "dot__active" : ""
       }" data-index="${index}"></div>`;
       sliderDots.innerHTML += dotsDiv;
@@ -76,7 +76,7 @@ function initSlider() {
 
       //1.1.2 УПРАВЛЕНИЕ ССЫЛКАМИ над слайдером
       //аналогично выводу картинок
-      let titlesDiv = `<div class="slider__title n${index} ${
+      const titlesDiv = `<div class="slider__title n${index} ${
         index === 0 ? "title__active" : ""
       }" data-index="${index}">${images[index].title}</div>`;
       sliderTitle.innerHTML += titlesDiv;
@@ -84,26 +84,26 @@ function initSlider() {
       //выбираем все названяи проектов, обходим массив с названиями
       //на каждое название вешаем слушатель клика
       //по клику запускаем ф-ю переключения слайдера
-      sliderTitle.querySelectorAll(".slider__titles").forEach((title) => {
+      sliderTitle.querySelectorAll(".slider__title").forEach((title) => {
         title.addEventListener("click", function () {
           moveSlider(this.dataset.index);
         });
       });
 
       //1.1.3 ВЫВОД ГОРОДА
-      let cityDiv = `<p class="cards__text n${index} ${
+      const cityDiv = `<p class="cards__text n${index} ${
         index === 0 ? "cards__active" : ""
       }" data-index="${index}">${images[index].city}</p>`;
       infoCity.innerHTML += cityDiv;
 
       //1.1.4 ВЫВОД ПЛОЩАДИ
-      let areaDiv = `<p class="cards__text n${index} ${
+      const areaDiv = `<p class="cards__text n${index} ${
         index === 0 ? "cards__active" : ""
       }" data-index="${index}">${images[index].area}</p>`;
       infoArea.innerHTML += areaDiv;
 
       //1.1.5 ВЫВОД ВРЕМЕНИ
-      let timeDiv = `<p class="cards__text n${index} ${
+      const timeDiv = `<p class="cards__text n${index} ${
         index === 0 ? "cards__active" : ""
       }" data-index="${index}">${images[index].time}</p>`;
       infoTime.innerHTML += timeDiv;
@@ -117,7 +117,7 @@ function initSlider() {
   function initArrows() {
     sliderArrows.querySelectorAll(".projects__nav-arrow").forEach((arrow) => {
       arrow.addEventListener("click", function () {
-        let curNumber = +sliderImages.querySelector(".active").dataset.index;
+        const curNumber = +sliderImages.querySelector(".active").dataset.index;
         let nextNumber;
 
         if (arrow.classList.contains("left")) {
